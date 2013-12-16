@@ -29,6 +29,33 @@ nginx.sleep.conf
 	$ curl http://127.0.0.1:8080/sleep
 	sleep 6s & wake up
 
+nginx.shared.conf
+--------------
+实现: 测试lua_shared_dict. 在线修改共享内存中的值
+
+	$curl http://127.0.0.1:8080/getone
+	取出1个, 剩余:4
+	$curl http://127.0.0.1:8080/getone
+	取出1个, 剩余:3
+	$curl http://127.0.0.1:8080/getone
+	取出1个, 剩余:2
+	$curl http://127.0.0.1:8080/getone
+	取出1个, 剩余:1
+	$curl http://127.0.0.1:8080/getone
+	取出1个, 剩余:0
+	$curl http://127.0.0.1:8080/getone
+	<html>
+	<head><title>404 Not Found</title></head>
+	<body bgcolor="white">
+	<center><h1>404 Not Found</h1></center>
+	<hr><center>ngx_openresty/1.4.3.3</center>
+	</body>
+	</html>
+	$curl "http://127.0.0.1:8080/add?num=10"
+	补充后,当前苹果数为:10
+	$curl http://127.0.0.1:8080/getone
+	取出1个, 剩余:9
+	$
 
 
 p.s. 
